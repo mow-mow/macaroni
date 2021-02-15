@@ -1,17 +1,17 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: タイトル
+  title: おすすめパスタ
 paths:
-  '/user/{id}':
+  '/pasta/{date}':
     get:
-      description: ユーザー情報取得
+      description: おすすめパスタ取得を取得する
       parameters:
-      - name: id
-        in: path
-        description: user id
-        required: true
-        type: number
+        - name: id
+          in: path
+          description: user id
+          required: true
+          type: number
       responses:
         '200':
           description: 成功
@@ -22,3 +22,55 @@ paths:
                 type: integer
               username:
                 type: string
+        '400':
+          description: Bad Request
+          schema:
+            description: ''
+            type: object
+            properties:
+              result:
+                type: string
+                minLength: 1
+              error_msg:
+                type: string
+                minLength: 1
+            required:
+              - result
+              - error_msg
+        '':
+          description: ''
+          examples:
+            example-1: {}
+          schema:
+            description: ''
+            type: object
+            properties:
+              result:
+                type: string
+                minLength: 1
+                description: 取得結果
+              date:
+                type: string
+                minLength: 1
+                description: 取得した日付
+              pasta_name:
+                type: string
+                minLength: 1
+                description: おすすめパスタ
+              description:
+                type: string
+                minLength: 1
+                description: パスタ説明
+              comment:
+                type: string
+                minLength: 1
+                description: 一言
+            required:
+              - result
+      operationId: ''
+    parameters:
+      - type: string
+        name: date
+        in: path
+        required: true
+        description: YYYY-MM-DD指定 省略時は今日日付が指定される
