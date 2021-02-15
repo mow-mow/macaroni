@@ -68,6 +68,7 @@ paths:
             required:
               - result
       operationId: ''
+      summary: おすすめパスタ取得
     parameters:
       - type: string
         name: date
