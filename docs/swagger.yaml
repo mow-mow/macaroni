@@ -26,6 +26,7 @@ paths:
               comment:
                 type: string
                 description: 一言
+                example: お肉を食べて体力をつけるぞ！
               date:
                 type: string
                 description: 取得した日付
@@ -41,9 +42,11 @@ paths:
               result:
                 type: string
                 minLength: 1
+                example: NG
               error_msg:
                 type: string
                 minLength: 1
+                example: 日付の指定が変だぞ
             required:
               - result
               - error_msg
