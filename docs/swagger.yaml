@@ -6,22 +6,29 @@ paths:
   '/pasta/{date}':
     get:
       description: おすすめパスタ取得を取得する
-      parameters:
-        - name: id
-          in: path
-          description: user id
-          required: true
-          type: number
       responses:
         '200':
           description: 成功
           schema:
             type: object
             properties:
-              id:
-                type: integer
-              username:
+              result:
                 type: string
+              pasta_name:
+                type: string
+                description: パスタ
+              description:
+                type: string
+                description: パスタ説明
+              comment:
+                type: string
+                description: 一言
+              date:
+                type: string
+                description: 取得した日付
+                format: date
+            required:
+              - result
         '400':
           description: Bad Request
           schema:
