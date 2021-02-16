@@ -1,0 +1,16 @@
+
+{
+  "groupId" : "info.caprese",
+  "artifactId" : "macaroni",
+  "artifactVersion" : "1.0.0",
+  "invokerPackage" : "info.caprese.macaroni",
+  "modelPackage" : "info.caprese.macaroni.model",
+  "apiPackage" : "info.caprese.macaroni.api",
+  "configPackage" : "info.caprese.macaroni.configuration",
+  "useTags" : true,
+  "interfaceOnly" : false,
+  "useBeanValidation" : true,
+  "serializableModel" : true,
+  "java8" : true,
+  "dateLibrary" : "java8"
+}
