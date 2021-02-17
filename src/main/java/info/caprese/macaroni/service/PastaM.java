@@ -2,15 +2,15 @@ package info.caprese.macaroni.service;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 @Data
 @Entity
-@Table(name = "PASTA")
-public class Pasta {
+@Table(name = "pasta_m")
+public class PastaM {
     @Id
-    private String targetDate;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer pastaId;
     private String pastaName;
     private String description;
     private String comment;
