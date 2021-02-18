@@ -55,6 +55,7 @@ paths:
       summary: おすすめパスタ取得
       tags:
         - パスタ
+      parameters: []
     parameters:
       - type: string
         name: date
@@ -63,3 +64,6 @@ paths:
         format: date
 tags:
   - name: パスタ
+schemes:
+  - http
+host: macaroni.caprese.info
