@@ -23,18 +23,18 @@ jobs:
       run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    - name: Service Stop
-      run: ssh -i ./key $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl stop macaroni"
-      env:
-        SSH_USER: ${{ secrets.SSH_USER }}
-        SSH_PORT: ${{ secrets.SSH_PORT }}
-        SSH_HOST: ${{ secrets.SSH_HOST }}
     - name: Deploy
       run: rsync -rlptgoD --delete --include='*.jar' --exclude='*' -e "ssh -i ./key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${SSH_PORT}" target/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH
       env:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PORT: ${{ secrets.SSH_PORT }}
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+    - name: Service Stop
+      run: ssh -i ./key $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl stop macaroni"
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PORT: ${{ secrets.SSH_PORT }}
         SSH_HOST: ${{ secrets.SSH_HOST }}
     - name: Service Start
       run: ssh -i ./key $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl start macaroni"
