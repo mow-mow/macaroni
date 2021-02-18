@@ -31,13 +31,13 @@ jobs:
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         SSH_HOST: ${{ secrets.SSH_HOST }}
     - name: Service Stop
-      run: ssh -i ./key $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl stop macaroni"
+      run: ssh -i ./key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl stop macaroni"
       env:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PORT: ${{ secrets.SSH_PORT }}
         SSH_HOST: ${{ secrets.SSH_HOST }}
     - name: Service Start
-      run: ssh -i ./key $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl start macaroni"
+      run: ssh -i ./key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_HOST -p $SSH_PORT  "sudo systemctl start macaroni"
       env:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PORT: ${{ secrets.SSH_PORT }}
