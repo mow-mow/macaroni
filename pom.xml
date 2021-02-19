@@ -13,7 +13,7 @@
 	</parent>
 	<groupId>info.caprese</groupId>
 	<artifactId>macaroni</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>macaroni</name>
 	<description>macaroni</description>
 	<dependencies>
