@@ -2,8 +2,9 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: おすすめパスタ
+  description: ''
 paths:
-  '/pasta/{date}':
+  '/pasta/{date}/{time_zone}':
     get:
       description: おすすめパスタ取得を取得する
       responses:
@@ -31,6 +32,9 @@ paths:
                 type: string
                 description: 取得した日付
                 format: date
+              time_zone:
+                type: string
+                example: MORNING
             required:
               - result
         '400':
@@ -62,6 +66,11 @@ paths:
         in: path
         description: YYYY-MM-DD指定 省略時は今日日付が指定される
         format: date
+      - type: string
+        name: time_zone
+        in: path
+        required: true
+        description: 'MORNING,DAYTIME,NIGHTのいずれか'
 tags:
   - name: パスタ
 schemes:
