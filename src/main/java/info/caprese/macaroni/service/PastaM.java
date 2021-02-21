@@ -14,4 +14,5 @@ public class PastaM {
     private String pastaName;
     private String description;
     private String comment;
+    private byte[] image;
 }

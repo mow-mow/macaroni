@@ -46,6 +46,7 @@ public class PastaService {
                 pasta.setPastaName(m.getPastaName());
                 pasta.setDescription(m.getDescription());
                 pasta.setComment(m.getComment());
+                pasta.setImage(m.getImage());
                 }
         );
         log.info("パスタ保存開始");
