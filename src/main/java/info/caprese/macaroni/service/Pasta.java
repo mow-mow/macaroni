@@ -19,5 +19,6 @@ public class Pasta {
     private String pastaName;
     private String description;
     private String comment;
+    private byte[] image;
     private LocalDateTime insertDateTime;
 }
