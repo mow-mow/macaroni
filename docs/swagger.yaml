@@ -97,7 +97,7 @@ paths:
               - error_msg
           examples: {}
       operationId: get-v2-pasta-param
-      summary: おすすめパスタ取得
+      summary: おすすめパスタ取得（画像つき）
       tags:
         - パスタ
       parameters: []
