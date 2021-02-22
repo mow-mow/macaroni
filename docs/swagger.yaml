@@ -55,7 +55,7 @@ paths:
               - result
               - error_msg
           examples: {}
-      operationId: ''
+      operationId: get-pasta
       summary: おすすめパスタ取得
       tags:
         - パスタ
@@ -74,7 +74,7 @@ paths:
         description: 'MORNING,DAYTIME,NIGHTのいずれか'
   '/v2/pasta/{date}/{time_zone}':
     get:
-      description: 指定日付のおすすめパスタ取得を取得する（画像つき）
+      description: 指定日付でおすすめパスタ取得を取得する（画像つき）
       responses:
         '200':
           $ref: '#/responses/正常'
@@ -96,7 +96,7 @@ paths:
               - result
               - error_msg
           examples: {}
-      operationId: ''
+      operationId: get-v2-pasta-param
       summary: おすすめパスタ取得
       tags:
         - パスタ
@@ -107,6 +107,7 @@ paths:
         in: path
         description: YYYY-MM-DD指定 省略時は今日日付が指定される
         format: date
+        required: true
       - type: string
         name: time_zone
         in: path
@@ -114,8 +115,9 @@ paths:
         description: 'MORNING,DAYTIME,NIGHTのいずれか'
   /v2/pasta/:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: おすすめパスタ取得を取得する（画像つき）
+      tags:
+        - パスタ
       responses:
         '200':
           $ref: '#/responses/正常'
