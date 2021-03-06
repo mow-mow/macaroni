@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: おすすめパスタ
-  description: ''
+  description: アンチョビがパスタをおすすめるするAPI
 paths:
   '/pasta/{date}/{time_zone}':
     get:
@@ -55,11 +55,12 @@ paths:
               - result
               - error_msg
           examples: {}
-      operationId: ''
+      operationId: get-pasta
       summary: おすすめパスタ取得
       tags:
         - パスタ
       parameters: []
+      deprecated: true
     parameters:
       - type: string
         name: date
@@ -71,8 +72,129 @@ paths:
         in: path
         required: true
         description: 'MORNING,DAYTIME,NIGHTのいずれか'
+  '/v2/pasta/{date}/{time_zone}':
+    get:
+      description: 指定日付でおすすめパスタ取得を取得する（画像つき）
+      responses:
+        '200':
+          $ref: '#/responses/正常'
+        '400':
+          description: Bad Request
+          schema:
+            description: ''
+            type: object
+            properties:
+              result:
+                type: string
+                minLength: 1
+                example: NG
+              error_msg:
+                type: string
+                minLength: 1
+                example: 日付の指定が変だぞ
+            required:
+              - result
+              - error_msg
+          examples: {}
+      operationId: get-v2-pasta-param
+      summary: おすすめパスタ取得（画像つき）
+      tags:
+        - パスタ
+      parameters: []
+    parameters:
+      - type: string
+        name: date
+        in: path
+        description: YYYY-MM-DD指定 省略時は今日日付が指定される
+        format: date
+        required: true
+      - type: string
+        name: time_zone
+        in: path
+        required: true
+        description: 'MORNING,DAYTIME,NIGHTのいずれか'
+  /v2/pasta/:
+    get:
+      summary: おすすめパスタ取得を取得する（画像つき）
+      tags:
+        - パスタ
+      responses:
+        '200':
+          $ref: '#/responses/正常'
+      operationId: get-v2-pasta
+      description: おすすめパスタ取得を取得する（画像つき）
 tags:
   - name: パスタ
 schemes:
   - http
 host: macaroni.caprese.info
+responses:
+  正常:
+    description: Example response
+    content:
+      application/json:
+        schema:
+          properties:
+            id:
+              type: string
+    headers:
+      header-0:
+        type: string
+    examples: {}
+    schema:
+      type: object
+      properties:
+        result:
+          type: string
+          example: OK
+        date:
+          type: string
+          description: 取得した日付
+          format: date
+        time_zone:
+          type: string
+          example: MORNING
+        pasta_name:
+          type: string
+          description: パスタ
+          example: ボロネーゼ
+        description:
+          type: string
+          description: パスタ説明
+          example: ひき肉をトマトやワインと一緒に煮込んだパスタのことだぞ
+        comment:
+          type: string
+          description: 一言
+          example: お肉を食べて体力をつけるぞ！
+        image:
+          type: string
+          description: 画像（BASE64エンコード）
+      required:
+        - result
+        - date
+        - time_zone
+        - pasta_name
+        - description
+        - comment
+  パラメータエラー:
+    description: Example response
+    content:
+      application/json:
+        schema:
+          properties:
+            id:
+              type: string
+    schema:
+      type: object
+      properties:
+        result:
+          type: string
+          minLength: 1
+          example: NG
+        error_msg:
+          type: string
+          minLength: 1
+          example: 日付の指定が変だぞ
+      required:
+        - result
+        - error_msg
