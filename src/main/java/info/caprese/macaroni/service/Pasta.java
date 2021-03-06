@@ -16,6 +16,7 @@ public class Pasta {
     @Id
     @Enumerated(EnumType.STRING)
     private TimeZone timeZone;
+    private Integer pastaId;
     private String pastaName;
     private String description;
     private String comment;

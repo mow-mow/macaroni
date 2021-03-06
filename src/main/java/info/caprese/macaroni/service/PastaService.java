@@ -4,13 +4,11 @@ import info.caprese.macaroni.model.PastaMRepository;
 import info.caprese.macaroni.model.PastaRepository;
 import info.caprese.macaroni.model.TimeZone;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @Slf4j
@@ -43,6 +41,7 @@ public class PastaService {
         Optional<PastaM> pastM = pastaMRepository.findPastaMRandom();
         pastM.ifPresent(
                 m ->{
+                pasta.setPastaId(m.getPastaId());
                 pasta.setPastaName(m.getPastaName());
                 pasta.setDescription(m.getDescription());
                 pasta.setComment(m.getComment());

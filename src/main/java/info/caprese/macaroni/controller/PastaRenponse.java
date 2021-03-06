@@ -1,10 +1,8 @@
 package info.caprese.macaroni.controller;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import info.caprese.macaroni.model.TimeZone;
 import lombok.Builder;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +11,7 @@ import lombok.Setter;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PastaRenponse {
-    private String result;
+    private Result result;
     private String date;
     private TimeZone timeZone;
     private String pastaName;

@@ -1,6 +1,5 @@
 package info.caprese.macaroni.model;
 
-import info.caprese.macaroni.service.Pasta;
 import info.caprese.macaroni.service.PastaM;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
