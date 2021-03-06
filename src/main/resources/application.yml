@@ -1,5 +1,6 @@
-
 spring:
+  application:
+    name: my_spring_boot_app
   profiles:
     active: dev
   jackson:
@@ -11,3 +12,11 @@ spring:
 logging:
   level:
     sql: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "prometheus"
+  metrics:
+    tags:
+      application: ${spring.application.name}
