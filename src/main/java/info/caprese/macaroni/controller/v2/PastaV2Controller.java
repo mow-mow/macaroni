@@ -3,6 +3,7 @@ package info.caprese.macaroni.controller.v2;
 import info.caprese.macaroni.DateUtil;
 import info.caprese.macaroni.controller.PastaRenponse;
 import info.caprese.macaroni.controller.PastaValidator;
+import info.caprese.macaroni.controller.Result;
 import info.caprese.macaroni.model.TimeZone;
 import info.caprese.macaroni.service.Pasta;
 import info.caprese.macaroni.service.PastaService;
@@ -34,31 +35,27 @@ public class PastaV2Controller {
 
         Pasta pasta = service.findPasta(date, timeZone);
 
-        return new ResponseEntity<PastaRenponse>(
-                PastaRenponse.builder()
-                        .result("OK")
-                        .timeZone(timeZone)
-                        .date(date)
-                        .pastaName(pasta.getPastaName())
-                        .description(pasta.getDescription())
-                        .comment(pasta.getComment())
-                        .image(Base64.encodeBase64String(pasta.getImage()))
-                        .build(), HttpStatus.OK);
+        return exchangeResponse(date, timeZone, pasta);
     }
 
     @GetMapping(value = "/v2/pasta/{date}/{time_zone}")
     ResponseEntity<PastaRenponse> pastaDateGet(@PathVariable("date") String date, @PathVariable("time_zone")TimeZone timeZone) {
         if (!validator.validateDate(date)) {
             log.info("入力チェック - [NG]");
-            return new ResponseEntity<PastaRenponse>(PastaRenponse.builder().result("NG")
+            return new ResponseEntity<PastaRenponse>(PastaRenponse.builder().result(Result.NG)
                     .errorMsg("日付の指定が変だぞ:" + date).build(), HttpStatus.OK);
         }
         log.info("入力チェック - [OK]");
 
         Pasta pasta = service.findPasta(date, timeZone);
+
+        return exchangeResponse(date, timeZone, pasta);
+    }
+
+    private ResponseEntity<PastaRenponse> exchangeResponse(String date, TimeZone timeZone, Pasta pasta) {
         return new ResponseEntity<PastaRenponse>(
                 PastaRenponse.builder()
-                        .result("OK")
+                        .result(Result.OK)
                         .date(date)
                         .timeZone(timeZone)
                         .pastaName(pasta.getPastaName())
