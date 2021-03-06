@@ -3,6 +3,7 @@ package info.caprese.macaroni.service;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -15,4 +16,6 @@ public class PastaM {
     private String description;
     private String comment;
     private byte[] image;
+    private LocalDateTime updateDateTime;
+    private LocalDateTime insertDateTime;
 }
