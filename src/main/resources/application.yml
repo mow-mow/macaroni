@@ -1,6 +1,6 @@
 spring:
   application:
-    name: my_spring_boot_app
+    name: macaroni
   profiles:
     active: dev
   jackson:
