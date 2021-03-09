@@ -126,7 +126,7 @@ paths:
 tags:
   - name: パスタ
 schemes:
-  - http
+  - https
 host: macaroni.caprese.info
 responses:
   正常:
