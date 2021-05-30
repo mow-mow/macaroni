@@ -95,10 +95,10 @@ public class LoggingFilter extends OncePerRequestFilter {
         int status = response.getStatus();
         log.info("【レスポンス情報】{} Status:{} {}" , prefix, status, HttpStatus.valueOf(status).getReasonPhrase());
 
-        byte[] content = response.getContentAsByteArray();
-        if (content.length > 0) {
-            logContent(content, response.getContentType());
-        }
+//        byte[] content = response.getContentAsByteArray();
+//        if (content.length > 0) {
+//            logContent(content, response.getContentType());
+//        }
     }
 
     private static void logContent(byte[] content, String contentType) {
