@@ -72,6 +72,10 @@ public class LoggingFilter extends OncePerRequestFilter {
     private static void logRequestHeader(ContentCachingRequestWrapper request, String prefix) {
         String queryString = request.getQueryString();
 
+        if (queryString != null && queryString.contains("actuator")) {
+            return;
+        }
+
         StringJoiner headerString = new StringJoiner(",");
         Collections.list(request.getHeaderNames()).forEach(headerName ->
                 Collections.list(request.getHeaders(headerName)).forEach(headerValue ->
