@@ -40,3 +40,21 @@ jobs:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PORT: ${{ secrets.SSH_PORT }}
         SSH_HOST: ${{ secrets.SSH_HOST }}
+    # 上記までの処理が成功した場合、以下のSlack通知処理が実行される
+    - name: Slack Notification Success
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
+        SLACK_COLOR: '#5cb85c'
+        SLACK_TITLE: 'Success to Deploy to GitHub Pages :rocket:'
+        SLACK_MESSAGE: ':closed_book: ${{ github.repository }}' 
+
+    # 上記までの処理のいずれかが失敗した場合、以下のSlack通知処理が実行される
+    - name: Slack Notification Failure
+      if: failure()
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
+        SLACK_COLOR: '#dc143c'
+        SLACK_TITLE: 'Failure to Deploy to GitHub Pages :boom:'
+        SLACK_MESSAGE: ':closed_book: ${{ github.repository }}'
